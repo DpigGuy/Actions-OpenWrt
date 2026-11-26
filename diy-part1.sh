@@ -16,3 +16,5 @@
 # Add a feed source
 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+# 按需添加第三方软件包源
+echo "src-git immortalwrt_packages https://github.com/immortalwrt/packages.git;openwrt-24.10" >> feeds.conf.default
