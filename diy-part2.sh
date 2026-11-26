@@ -18,3 +18,12 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+# 将 H3C Magic NX30 Pro 的 ubi 分区大小从 112MB (0x7000000) 改回 64MB (0x4000000)
+DTS_FILE=$(find target/linux/mediatek/ -name "mt7981b-h3c-magic-nx30-pro.dts" | head -n 1)
+if [ -n "$DTS_FILE" ]; then
+  echo "Found DTS: $DTS_FILE"
+  sed -i 's/0x7000000/0x4000000/g' "$DTS_FILE"
+  grep -n "0x4000000" "$DTS_FILE" || true
+else
+  echo "Warning: DTS file not found!"
+fi
